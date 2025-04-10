@@ -24,7 +24,6 @@ function  cleanKichen() {
             const kitchenCleaned = true;
             if (kitchenCleaned) {
                 resolve("You clean the kitchen");
-                
             } else {
                 reject("You didn't clean the kitchen");
             }
