@@ -6,3 +6,7 @@ export interface Irectangle {
 export interface Icircle {
     radius: number,
 };
+
+export interface IShape {
+    getArea: () => number;
+}
