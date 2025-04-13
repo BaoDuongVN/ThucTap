@@ -1,3 +1,4 @@
+// Numeric Enums
 export enum StatusCodes {
     NotFound = 404,
     Success = 200,
@@ -5,6 +6,3 @@ export enum StatusCodes {
     BadRequest = 400,
 };
 
-export enum MathConstant {
-    PI = 3.14159,
-}

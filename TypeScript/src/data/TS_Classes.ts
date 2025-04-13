@@ -1,3 +1,4 @@
+// class
 export class Person {
     name: string;
     constructor() {
@@ -5,6 +6,7 @@ export class Person {
     }
 }
 
+// class
 export class Student {
     private age: number;
     public constructor() {
@@ -19,3 +21,4 @@ export class Student {
         this.age = age;
     }
 }
+
