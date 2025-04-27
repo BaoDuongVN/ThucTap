@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Users</title>
+    <link rel="stylesheet" href="/css/user.css">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Create a new user</h1>
+
+        <form action="/user" method="POST">
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="text" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="name">User name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" placeholder="Enter your city" required>
+            </div>
+
+            <button type="submit" class="btn-submit">Submit</button>
+        </form>
+    </div>
+
+    <!-- User list table -->
+    <div class="table-container">
+        <div class="title">List Users</div>
+
+        <table>
+            <tr>
+              <th>ID</th>
+              <th>Email</th>
+              <th>Name</th>
+              <th>City</th>
+              <th>Actions</th>
+            </tr>
+            <% listUsers.forEach( (user, index) => { %>
+                <tr>
+                    <td><%= user.id %></td>
+                    <td><%= user.email %></td>
+                    <td><%= user.name %></td>
+                    <td><%= user.city %></td>
+                    <td>
+                    <div class="user-actions">
+                        <a href="/update/<%= user.id %>" class="btn edit-btn">Edit</a>
+                        <a href="/delete/<%= user.id %>" class="btn delete-btn">Delete</a>
+                    </div>
+                    </td>
+                </tr>
+            <% }) %>
+        </table>
+    </div>
+</body>
+</html>

@@ -70,5 +70,5 @@ import {printYardSize, House, printMileage, getValue} from "./data/TS_Null"
 // printMileage(null);
 // printMileage(0);
 
-let value = getValue();
-console.log('Value length: ' + value!.length);
+// let value = getValue();
+// console.log('Value length: ' + value!.length);

@@ -1,0 +1,17 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const router = express_1.default.Router();
+// Route xử lý GET request
+router.get('/', (req, res) => {
+    res.json({ message: 'List of users' });
+});
+// Route xử lý POST request
+router.post('/', (req, res) => {
+    const user = req.body;
+    res.status(201).json({ message: 'User created', user });
+});
+exports.default = router;
