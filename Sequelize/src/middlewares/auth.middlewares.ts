@@ -1,19 +1,17 @@
-import { NextFunction, Request, Response } from "express";
-import { UserRole } from "../models/User.models";
-import { PayLoadToken } from "./JWTAction.middlewares";
-import { verifyJWT } from "./JWTAction.middlewares";
 import dotenv from "dotenv";
+import { Request, Response, NextFunction } from "express";
+import { TokenPayLoad, verifyJWT } from "./JWTAction.middlewares";
+import { User, UserRole } from "../models/User.models";
+
 dotenv.config();
 
 declare global {
   namespace Express {
     interface Request {
-      user?: PayLoadToken;
+      user?: TokenPayLoad;
     }
   }
 }
-
-const secretKey = process.env.JWT_SECRET;
 
 export const authenticateToken = (
   req: Request,
@@ -24,41 +22,39 @@ export const authenticateToken = (
   const token = authHeader && authHeader.split(" ")[1];
 
   if (!token) {
-    res.status(401).json({
-      message: "Access token not found",
-    });
+    res.status(401).json({ message: "Token not found" });
     return;
   }
 
-  const decodedUser = verifyJWT(token);
+  try {
+    const decodedUser = verifyJWT(token);
 
-  if (!decodedUser) {
-    res.status(401).json({
-      message: "Access token is invalid",
-    });
+    if (!decodedUser) {
+      res.status(401).json({ message: "Cannot verify token" });
+      return;
+    }
+
+    req.user = decodedUser;
+    next();
+  } catch (error) {
+    console.log(error);
+    res.status(401).json({ message: "Unauthenticated" });
     return;
   }
-
-  req.user = decodedUser;
-  next();
 };
 
-export const authorizeRole = (allowedRoles: UserRole[]) => {
+export const authorizeRole = (allowedRoles: UserRole[])  => {
   return (req: Request, res: Response, next: NextFunction) => {
     if (!req.user || !req.user.role) {
-      res.status(401).json({
-        message: "Forbidden",
-      });
+      res.status(401).json({ message: "Forbidden" });
       return;
     }
 
     if (!allowedRoles.includes(req.user.role)) {
-      res.status(403).json({
-        message: "Forbidden",
-      });
+      res.status(403).json({ message: "Forbidden" });
       return;
     }
 
     next();
-  };
-};
+  }
+}

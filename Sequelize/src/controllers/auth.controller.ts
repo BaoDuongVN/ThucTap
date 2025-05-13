@@ -1,4 +1,4 @@
-import { PayLoadToken } from "../middlewares/JWTAction.middlewares";
+import { TokenPayLoad } from "../middlewares/JWTAction.middlewares";
 import { User } from "../models/User.models";
 import { Request, Response } from "express";
 import { createJWT, verifyJWT } from "../middlewares/JWTAction.middlewares";
@@ -23,11 +23,10 @@ export const login = async (req: Request, res: Response) => {
       return;
     }
 
-    const payload: PayLoadToken = {
+    const payload: TokenPayLoad = {
       id: user.id,
       email: user.email,
       userName: user.userName,
-      password: user.password,
       role: user.role,
     };
 
