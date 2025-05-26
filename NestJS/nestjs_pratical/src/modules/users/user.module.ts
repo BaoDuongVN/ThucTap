@@ -12,7 +12,7 @@ import { SeederModule } from "nestjs-sequelize-seeder";
     ],
     controllers: [UsersController],
     providers: [UsersService],
-    exports: []
+    exports: [UsersService]
 })
 
 export class UserModule {}

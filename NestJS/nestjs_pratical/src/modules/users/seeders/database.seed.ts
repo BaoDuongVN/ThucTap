@@ -1,5 +1,4 @@
 import { OnSeederInit, Seeder } from 'nestjs-sequelize-seeder';
-import { User } from '../entities/user.entity';
 
 @Seeder({
   model: 'User',
@@ -8,34 +7,83 @@ import { User } from '../entities/user.entity';
 export class SeedUser implements OnSeederInit {
   run() {
     const data = [
-      { username: 'skywalker', password: 'force2025' },
-      { username: 'ironman', password: 'jarvis123' },
-      { username: 'neo', password: 'matrix99' },
-      { username: 'lara.croft', password: 'tombRaider' },
-      { username: 'sherlock', password: 'elementary' },
-      { username: 'batman', password: 'gothamKnight' },
-      { username: 'goku', password: 'kamehameha' },
-      { username: 'pikachu', password: 'thunderbolt' },
-      { username: 'frodo', password: 'ringBearer' },
-      { username: 'katniss', password: 'mockingjay' },
-      { username: 'vader', password: 'darkside' },
-      { username: 'thor', password: 'mjolnir' },
-      { username: 'spock', password: 'liveLong' },
-      { username: 'link', password: 'hyrule' },
-      { username: 'dr.strange', password: 'multiverse' },
-      { username: 'john.wick', password: 'babaYaga' },
-      { username: 'tony.stark', password: 'iAmIronman' },
-      { username: 'agent.carter', password: 'shield99' },
-      { username: 'wanda', password: 'scarletWitch' },
-      { username: 'geralt', password: 'witcher' },
+      {
+        username: 'skywalker',
+        email: 'skywalker@example.com',
+        password: 'force2025',
+      },
+      {
+        username: 'ironman',
+        email: 'ironman@example.com',
+        password: 'jarvis123',
+      },
+      { username: 'neo', email: 'neo@example.com', password: 'matrix99' },
+      {
+        username: 'lara.croft',
+        email: 'lara.croft@example.com',
+        password: 'tombRaider',
+      },
+      {
+        username: 'sherlock',
+        email: 'sherlock@example.com',
+        password: 'elementary',
+      },
+      {
+        username: 'batman',
+        email: 'batman@example.com',
+        password: 'gothamKnight',
+      },
+      { username: 'goku', email: 'goku@example.com', password: 'kamehameha' },
+      {
+        username: 'pikachu',
+        email: 'pikachu@example.com',
+        password: 'thunderbolt',
+      },
+      { username: 'frodo', email: 'frodo@example.com', password: 'ringBearer' },
+      {
+        username: 'katniss',
+        email: 'katniss@example.com',
+        password: 'mockingjay',
+      },
+      { username: 'vader', email: 'vader@example.com', password: 'darkside' },
+      { username: 'thor', email: 'thor@example.com', password: 'mjolnir' },
+      { username: 'spock', email: 'spock@example.com', password: 'liveLong' },
+      { username: 'link', email: 'link@example.com', password: 'hyrule' },
+      {
+        username: 'dr.strange',
+        email: 'dr.strange@example.com',
+        password: 'multiverse',
+      },
+      {
+        username: 'john.wick',
+        email: 'john.wick@example.com',
+        password: 'babaYaga',
+      },
+      {
+        username: 'tony.stark',
+        email: 'tony.stark@example.com',
+        password: 'iAmIronman',
+      },
+      {
+        username: 'agent.carter',
+        email: 'agent.carter@example.com',
+        password: 'shield99',
+      },
+      {
+        username: 'wanda',
+        email: 'wanda@example.com',
+        password: 'scarletWitch',
+      },
+      { username: 'geralt', email: 'geralt@example.com', password: 'witcher' },
     ];
+
     return data;
   }
 
   everyone(data) {
-      data.createdAt = new Date().toISOString();
-      data.updatedAt = new Date().toISOString();
+    data.createdAt = new Date().toISOString();
+    data.updatedAt = new Date().toISOString();
 
-      return data;
-   }
+    return data;
+  }
 }
