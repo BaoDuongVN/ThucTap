@@ -6,6 +6,7 @@ import {
   Request,
   Response,
   UseGuards,
+  UsePipes,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from '../users/dto/create_user.dto';
@@ -13,14 +14,10 @@ import { LocalAuthGuard } from './guards/local_auth.guard';
 import { JwtAuthGuard } from './guards/jwt_auth.guard';
 import { LoginDto } from './dto/login.dto';
 import { API_RESPONSE } from 'src/common/base/api_response.base';
-import { UserService } from '../users/user.service';
 
 @Controller('/auth')
 export class AuthController {
-  constructor(
-    private readonly authService: AuthService,
-    private readonly userService: UserService,
-  ) {}
+  constructor(private readonly authService: AuthService) {}
 
   @Post('/register')
   async register(@Body() createUserDto: CreateUserDto) {

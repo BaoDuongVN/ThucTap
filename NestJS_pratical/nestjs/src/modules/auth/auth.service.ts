@@ -4,7 +4,6 @@ import { JwtService } from '@nestjs/jwt';
 import { comparePassword } from 'src/common/utils/hash.utils';
 import { CreateUserDto } from '../users/dto/create_user.dto';
 import { LoginDto } from './dto/login.dto';
-import { User } from '../users/entity/user.entity';
 import { UserWithoutPassword } from '../users/interfaces/user.interface';
 
 @Injectable()
