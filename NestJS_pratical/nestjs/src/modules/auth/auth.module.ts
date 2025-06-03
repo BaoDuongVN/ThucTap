@@ -15,6 +15,8 @@ import { LocalStrategy } from './strategies/local.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { LocalAuthGuard } from './guards/local_auth.guard';
 import { RolesGuard } from './guards/roles.guard';
+import { ValidationMiddlewareFactory } from 'src/common/middlewares/validation.middleware';
+import { LoginDto } from './dto/login.dto';
 
 @Module({
   imports: [
@@ -43,4 +45,10 @@ import { RolesGuard } from './guards/roles.guard';
   ],
   exports: [AuthService, JwtAuthGuard, RolesGuard],
 })
-export class AuthModule {}
+export class AuthModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(ValidationMiddlewareFactory(LoginDto))
+      .forRoutes({ path: 'auth/login', method: RequestMethod.POST });
+  }
+}

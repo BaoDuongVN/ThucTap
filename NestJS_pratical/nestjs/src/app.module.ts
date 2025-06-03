@@ -6,6 +6,10 @@ import { SequelizeModule, SequelizeModuleOptions } from '@nestjs/sequelize';
 import { UserModule } from './modules/users/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { LoggerMiddleware } from './common/middlewares/logger.middleware';
+import { APP_FILTER } from '@nestjs/core';
+import { BadRequestExceptionFilter } from './common/exeption-filters/bad-request.exception';
+import { ScheduleModule } from '@nestjs/schedule';
+import { TaskModule } from './modules/tasks/task.module';
 
 @Module({
   imports: [
@@ -30,9 +34,16 @@ import { LoggerMiddleware } from './common/middlewares/logger.middleware';
     }),
     UserModule,
     AuthModule,
+    TaskModule
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_FILTER,
+      useClass: BadRequestExceptionFilter,
+    },
+  ],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

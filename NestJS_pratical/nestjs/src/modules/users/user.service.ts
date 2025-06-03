@@ -83,4 +83,13 @@ export class UserService {
     }
     await user.destroy();
   }
+
+  async BirthdayNotification() {
+    const today = new Date();
+    const birthdayUser = await this.userModel.findAll({
+      where: {
+        birthday: today,
+      },
+    });
+  }
 }

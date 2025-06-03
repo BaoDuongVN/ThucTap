@@ -14,7 +14,7 @@ export class ErrorInterceptor implements NestInterceptor {
   intercept(
     context: ExecutionContext,
     next: CallHandler<any>,
-  ): Observable<any> { // Simplified return type, as pipe always returns Observable
+  ): Observable<any> {
     const controllerName = context.getClass().name;
     const handlerName = context.getHandler().name;
     this.logger.log(`[${controllerName}#${handlerName}] - Entering handler...`);

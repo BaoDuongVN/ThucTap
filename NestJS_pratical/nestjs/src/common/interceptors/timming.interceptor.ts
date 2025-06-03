@@ -7,12 +7,11 @@ import {
 import { Observable, tap } from 'rxjs';
 
 @Injectable()
-export class LoggingInterceptor implements NestInterceptor {
+export class TimingInterceptor implements NestInterceptor {
   intercept(
     context: ExecutionContext,
     next: CallHandler<any>,
   ): Observable<any> | Promise<Observable<any>> {
-    console.log('Request starting....');
     const start = Date.now();
     return next.handle().pipe(
       tap((data) => {

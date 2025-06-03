@@ -8,6 +8,7 @@ import {
   Query,
   UseGuards,
   UseInterceptors,
+  UsePipes,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { API_RESPONSE } from 'src/common/base/api_response.base';
@@ -16,8 +17,6 @@ import { Roles } from '../auth/decorators/roles.decorator';
 import { UserRole } from './enum/role.enum';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { JwtAuthGuard } from '../auth/guards/jwt_auth.guard';
-import { LoggingInterceptor } from 'src/common/interceptors/logging.interceptor';
-import { TransformInterceptor } from 'src/common/interceptors/transform.interceptor';
 
 @Controller('users')
 @UseGuards(JwtAuthGuard, RolesGuard)
@@ -26,7 +25,6 @@ export class UsersController {
 
   @Get('/findAll')
   @Roles(UserRole.ADMIN, UserRole.USER)
-  @UseInterceptors(LoggingInterceptor, TransformInterceptor)
   async findAll() {
     const data = await this.userService.findAll();
     return data;
